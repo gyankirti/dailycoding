@@ -16,7 +16,7 @@ using namespace std;
       }
       return ans;
   }
-// Optimal Solution (Using 2-pointers)
+//3. Optimal Solution (Using 2-pointers)
   vector<int> reverse2(vector<int> arr)
   {
       int i=0,j=arr.size()-1;
