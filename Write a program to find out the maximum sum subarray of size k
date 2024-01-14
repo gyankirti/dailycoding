@@ -1,0 +1,60 @@
+/* maximum sum subarray of size k, given an array of integers and k value
+   need to find out the subarray giving out the maximum sum
+*/
+#include <bits/stdc++.h>
+
+using namespace std;
+
+/* Naive Solution - Brute Force Solution - Just Use 2 loops and 
+keep storing the sums until the size of the array*/ 
+
+int naive(vector<int> arr,int k){
+    int n = 0;
+    for(int i=0;i<=arr.size();i++){
+        int tmp = 0;
+        for(int j=i;j<i+k;j++){
+            if(j == arr.size())
+            {
+                break;
+            }
+            tmp = tmp+arr[j];
+            n = max(n,tmp);
+            
+        }
+    }
+    return n;
+}
+
+/* Usimg 2 - pointers/ Siding Window */
+
+int optimum(vector<int> arr,int k){
+    int sm = 0, mx = 0;
+    int i=0,j=0;
+    while(j<arr.size()) {
+            sm+=arr[j];
+            if(j-i+1<k) {
+              j++;
+            } 
+            else if(j-i+1==k){
+                mx=max(mx,sm);
+                sm=sm-arr[i];
+                j++;    
+                i++;
+            }
+        }
+        return mx;
+}
+
+int main()
+{
+    vector<int> arr = {2,5,1,8,2,9,1};
+    int k = 3;  /* k defined as 3 here */
+    
+    int mx = optimum(arr,k);
+    cout<<mx<<endl;
+    
+    int mx1 ;
+    mx1 = naive(arr,k);
+    cout<<mx1;
+    return 0;
+}
