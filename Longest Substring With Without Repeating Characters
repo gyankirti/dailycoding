@@ -1,0 +1,47 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+  GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
+  C#, OCaml, VB, Perl, Swift, Prolog, Javascript, Pascal, COBOL, HTML, CSS, JS
+  Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <bits/stdc++.h>
+using namespace std;
+
+int optimal(string s){
+    map<char,int> mp;
+    int i = 0, j = 0;
+    
+    int ans = 0;
+    
+    
+    while(j<s.size()){
+        mp[s[j]]++;
+        if(j-i+1 == mp.size()){
+            ans = max(j-i+1,ans);
+        }
+        else if(j-i+1 > mp.size()){
+            while(j-i+1 > mp.size()){
+                mp[s[i]]--;
+                if(mp[s[i]]==0){
+                    mp.erase(s[i]);
+                }
+                i++;
+            }
+        }
+        j++;
+        
+    }
+    return ans;
+}
+
+int main()
+{
+    string s = "pwwkewwww";
+    
+    
+    int ans = optimal(s);
+    cout<<ans;
+    
+}
