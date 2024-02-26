@@ -1,0 +1,32 @@
+/******************************************************************************
+
+Print a name N times
+e.g.
+if N = 2
+    function should return Ram
+                           Ram;
+*******************************************************************************/
+#include <bits/stdc++.h>
+using namespace std;
+
+void recursive(int n){
+    if(n == 0){
+        return;
+    }
+    else{
+        cout<<"Ram"<< endl;
+        return recursive(n-1);
+    }
+}
+void iterative(int n){
+    for(int i = 0; i < n ; i++){
+        cout<<"RAM"<<endl;
+    }
+}
+int main()
+{
+    int n = 2;
+    recursive(n);
+    cout<<endl;
+    iterative(n);
+}
