@@ -1,0 +1,39 @@
+/******************************************************************************
+
+Sum of first N natural Numbers
+e.g.
+if N = 5
+    function should return 1+2+3+4+5;
+
+--> recurrence relation should be
+    Sum(n) =  0          -- n=0
+              sum(n-1)+n -- n>0
+
+*******************************************************************************/
+#include <bits/stdc++.h>
+using namespace std;
+
+int recursive(int n){
+    if(n == 0){
+        return 0;
+    }
+    else{
+        return recursive(n-1)+n;
+    }
+}
+int iterative(int n){
+    int sum = 0;
+    for(int i = 1; i <= n; i++){
+        sum = sum + i;
+    }
+    return sum;
+}
+
+int main()
+{
+    int n = 7;
+    int ans1 = recursive(n);
+    cout<< ans1;
+    int ans2 = iterative(n);
+    cout<< endl << ans2;
+}
