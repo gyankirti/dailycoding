@@ -1,0 +1,50 @@
+/******************************************************************************
+Given a string S, write a function to reverse the 
+characters of the string recursively
+
+*******************************************************************************/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+string recursive(string str, int i , int j){
+    if(i >= j){
+        return str;
+    }
+    char temp = str[i];
+    str[i] = str[j];
+    str[j] = temp;
+    
+    return recursive(str,i+1,j-1);
+}
+
+string iterative(string str){
+    int i = 0 , j = str.size()-1;
+    while(i <= j){
+        char temp = str[i];
+        str[i] = str[j];
+        str[j] = temp;
+        i++;
+        j--;
+    }
+    return str;
+}
+
+int main()
+{
+    string str = "abcdef";
+    
+    int i = 0;
+    int j = str.size() - 1;
+    
+    string ans1 = recursive(str,i,j);
+    
+    cout<<ans1;
+    
+    cout<<endl;
+    
+    string ans2 = iterative(str);
+    
+    cout<<ans2;
+    
+}
