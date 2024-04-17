@@ -1,0 +1,36 @@
+https://www.naukri.com/code360/problems/ceiling-in-a-sorted-array_1825401?utm_source=striver&utm_medium=website&utm_campaign=a_zcoursetuf&leftPanelTabValue=PROBLEM
+
+
+pair<int, int> getFloorAndCeil(vector<int> &a, int n, int x) {
+	int low = 0 , high = n-1;
+    pair<int,int> ans;
+    while(low<=high){
+        int mid = low + (high - low)/2;
+        if(a[mid] == x){
+           return  make_pair(x,x);
+        }
+        else if(a[mid]>x){
+            high = mid - 1;
+        }
+        else {
+            low = mid + 1;
+        }
+    }
+
+   ans = make_pair(high,low );
+
+    if(high<0){
+        ans = make_pair(high,a[low]);
+    }
+    else if (low<0){
+        ans = make_pair(a[high],low);
+    }
+    else{
+        ans = make_pair(a[high],a[low]);
+    }
+    
+    if(a[n-1]<x){
+        ans.second = -1;
+    }
+   return ans;
+}
