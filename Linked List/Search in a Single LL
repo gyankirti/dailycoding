@@ -1,0 +1,43 @@
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+    template <typename T>
+    class Node
+    {
+    public:
+        T data;
+        Node<T> *next;
+        Node()
+        {
+            this->data = 0;
+            this->next = NULL;
+        }
+        Node(T data)
+        {
+            this->data = data;
+            this->next = NULL;
+        }
+        Node(T data, T* next)
+        {
+            this->data = data;
+            this->next = next;
+        }
+    };
+
+*****************************************************************/
+int searchInLinkedList(Node<int>* head, int k) {
+    Node<int>* tmp = head;
+    int ans = 0;
+    if (head == nullptr) {
+        return 0;
+    }
+    while (tmp != nullptr) {
+        if (tmp->data == k) {
+            ans = 1;
+            break; // Exit the loop once the element is found
+        }
+        tmp = tmp->next;
+    }
+    return ans;
+}
