@@ -1,0 +1,58 @@
+/*
+Following is the class structure of the Node class:
+
+class Node
+{
+public:
+    int data;
+    Node *next,*prev;
+    Node()
+    {
+        this->data = 0;
+        next = NULL;
+        prev= NULL;
+    }
+    Node(int data)
+    {
+        this->data = data; 
+        this->next = NULL;
+        this->prev= NULL;
+    }
+    Node(int data, Node* next, Node *prev)
+    {
+        this->data = data;
+        this->next = next;
+        this->prev= prev;
+    }
+};
+
+*/
+
+//Aproach 1(mine) - basically swap each element of the linked list from the front and back using 2 - pointers
+
+Node* reverseDLL(Node* head) {
+    if (head == nullptr || head->next == nullptr) {
+        return head;
+    }
+
+    Node* start = head;  
+    Node* end = head;    
+
+    while (end->next != nullptr) {
+        end = end->next;
+    }
+    while (start != nullptr && end != nullptr && start != end && start->prev != end && end->next != start) {
+        int temp = start->data;
+        start->data = end->data;
+        end->data = temp;
+      
+        start = start->next;
+        end = end->prev;
+    }
+    return head;
+}
+
+
+//Aproach 2 - Reverse the links for each node 
+
+
