@@ -1,0 +1,39 @@
+#include <vector>
+#include <stack>
+#include <iostream>
+
+class Solution {
+public:
+    std::vector<int> leftSmaller(int n, int a[]) {
+        std::stack<int> st;
+        std::vector<int> v;
+        
+        for (int i = 0; i < n; i++) {
+            while (!st.empty() && a[i] <= st.top()) {
+                st.pop();
+            }
+            if (st.empty()) {
+                v.push_back(-1);
+            } else {
+                v.push_back(st.top());
+            }
+            st.push(a[i]);
+        }
+        
+        return v;
+    }
+};
+
+int main() {
+    Solution sol;
+    int arr[] = {1, 6, 2};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    
+    std::vector<int> result = sol.leftSmaller(n, arr);
+    
+    for (int x : result) {
+        std::cout << x << " ";
+    }
+    
+    return 0;
+}
