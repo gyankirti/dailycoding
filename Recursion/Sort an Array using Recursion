@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+void helper(vector<int>& arr, int temp){
+    if(arr.size() == 0 || arr[arr.size()-1] <= temp){
+        arr.push_back(temp);
+        return;
+    }
+    int val = arr[arr.size()-1];
+    arr.pop_back();
+    helper(arr,temp);
+    arr.push_back(val);
+}
+void sorter(vector<int>& arr){
+    if(arr.size() == 1){
+        return ;
+    }
+    int temp = arr[arr.size()-1];
+    arr.pop_back();
+    sorter(arr);
+    helper(arr,temp);
+}
+int main()
+{
+    vector<int> arr = {5,0,1,2};
+    sorter(arr);
+    for(int i = 0 ; i < arr.size() ; i++){
+        cout<<arr[i]<<" ";
+    }
+    
+}
