@@ -1,0 +1,43 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void recf(vector<int>& arr1,vector<int>& arr2 , int i , int j , vector<int>& ansarr){
+    if(i == arr1.size() && j == arr2.size()){
+        return;
+    }
+    if (i == arr1.size()) {
+        ansarr.push_back(arr2[j]);
+        recf(arr1, arr2, i, j + 1, ansarr);
+        return;
+    }
+
+    // If arr2 is fully processed, but arr1 still has elements
+    if (j == arr2.size()) {
+        ansarr.push_back(arr1[i]);
+        recf(arr1, arr2, i + 1, j, ansarr);
+        return;
+    }
+    
+    
+    if(arr1[i]>arr2[j]){
+        ansarr.push_back(arr2[j]);
+        recf(arr1,arr2,i,j+1,ansarr);
+    }else if(arr1[i]<arr2[j]){
+        ansarr.push_back(arr1[i]);
+        recf(arr1,arr2,i+1,j,ansarr);
+    }else {
+        ansarr.push_back(arr1[i]);
+        recf(arr1,arr2,i+1,j,ansarr);
+    }
+}
+int main()
+{
+    vector<int> arr1 = {1,2,4,4};
+    vector<int> arr2 = {1,3,5};
+    vector<int> ansarr ;
+    recf(arr1,arr2,0,0,ansarr);
+    for(int i = 0 ; i < ansarr.size() ; i++){
+        cout<<ansarr[i]<<" ";
+    }
+    
+}
