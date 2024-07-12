@@ -1,0 +1,27 @@
+class Solution{
+public:
+
+    void reverseStack(stack<int>& st,int n){
+        if(st.size() <= 1){
+            return;
+        }
+        int temp = st.top();
+        st.pop();
+        reverseStack(st,n);
+        insert(st,temp);
+    }
+    void insert(stack<int>& st,int value){
+    if(st.empty()){
+        st.push(value);
+        return;
+    }
+    int tmp = st.top();
+    st.pop();
+    insert(st,value);
+    st.push(tmp);
+    
+}
+    void Reverse(stack<int> &St){
+        reverseStack(St,St.size());
+    }
+};
