@@ -1,0 +1,59 @@
+19ms my solution
+class Solution {
+public:
+    Node* connect(Node* root) {
+        queue<Node*> q;
+        if(root == nullptr){
+            return root;
+        }
+        q.push(root);
+        while(!q.empty()){
+            int n = q.size();
+            for(int i = 0 ; i < n ; i++){
+                Node* temp = q.front();
+                q.pop();
+                if (i != n - 1) {
+                    temp->next = q.front();
+                } else {
+                    temp->next = nullptr;
+                }
+                if(temp->left){
+                    q.push(temp->left);
+                }
+                if(temp->right){
+                    q.push(temp->right);
+                }
+            }
+        }
+        return root;
+    }
+};
+
+
+11ms solution - Just a basic change in Comparison part made this faster
+
+class Solution {
+public:
+    Node* connect(Node* root) {
+        if(root == nullptr) return nullptr;
+
+        queue<Node*> q;
+        q.push(root);
+        while(!q.empty()){
+            int num = q.size();
+            Node* last;
+            for(int i = 0; i < num; i++){
+                Node* node = q.front();
+                last = node;
+                q.pop();
+                if(!q.empty())
+                    node->next = q.front();
+                
+                if(node->left) q.push(node->left);
+                if(node->right) q.push(node->right);
+            }
+            last->next = nullptr;
+        }
+        return root;
+    }
+};
