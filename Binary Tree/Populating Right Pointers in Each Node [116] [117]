@@ -1,3 +1,6 @@
+**NOTE**
+The same exat code works for 117 Populating right pointers in each node 2
+
 19ms my solution
 class Solution {
 public:
