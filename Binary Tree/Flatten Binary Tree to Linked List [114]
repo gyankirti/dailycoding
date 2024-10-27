@@ -1,0 +1,26 @@
+// we can improve this solution a bit by not using the vector doing an im place modification of the pointers
+
+class Solution {
+public:
+    void naive(TreeNode* root,vector<int> &helper){
+        if(root == nullptr){
+            return ;
+        }
+        helper.push_back(root->val);
+        naive(root->left,helper);
+        naive(root->right,helper);
+
+    }
+    void flatten(TreeNode* root) {
+        vector<int> helper;
+        naive(root,helper);
+        TreeNode* curr = root;
+        for(int i = 1 ; i < helper.size(); i++){
+            curr->left = nullptr;
+            TreeNode* temp = new TreeNode(helper[i]); 
+            curr->right = temp;
+            curr=curr->right;
+        }
+    }
+};
+
