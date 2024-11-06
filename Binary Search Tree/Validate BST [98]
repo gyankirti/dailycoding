@@ -1,0 +1,47 @@
+Approach 1 - Using Vector - Extra Space
+
+class Solution {
+public:
+    void isValidBSTHelper(TreeNode* node, vector<int>& v) {
+        if (!node) {
+            return;
+        }
+        isValidBSTHelper(node->left,v);
+        v.push_back(node->val);
+        isValidBSTHelper(node->right,v);
+    }
+    bool isValidBST(TreeNode* root) {
+        vector<int> v;
+        isValidBSTHelper(root,v);
+
+        for(int i = 1 ; i < v.size() ; i++){
+            if(v[i]<=v[i-1]){
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
+Approach 2 - Using Recursion - No extra spac
+class Solution {
+public:
+    bool isValidBSTHelper(TreeNode* node, long lower, long upper) {
+        // An empty tree is a valid BST
+        if (!node) {
+            return true;
+        }
+
+        // Check if the current node's value is within the bounds
+        if (node->val <= lower || node->val >= upper) {
+            return false;
+        }
+
+        // Recursively check the left and right subtrees with updated bounds
+        return isValidBSTHelper(node->left, lower, node->val) && 
+               isValidBSTHelper(node->right, node->val, upper);
+    }
+    bool isValidBST(TreeNode* root) {
+        return isValidBSTHelper(root, LONG_MIN, LONG_MAX);
+    }
+};
