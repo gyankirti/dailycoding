@@ -6,12 +6,15 @@ public:
         if (!root || root == p || root == q) {
             return root;
         }
+        //both lie in the left subtree, iterate over the left subtree
         if (p->val < root->val && q->val < root->val) {
             return lowestCommonAncestor(root->left, p, q);
         }
+        // both lie in the right subtree
         else if (p->val > root->val && q->val > root->val) {
             return lowestCommonAncestor(root->right, p, q);
         }
+        // if p and q are on the different sides of root then root is the LCA
         else {
             return root;
         }
