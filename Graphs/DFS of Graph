@@ -1,0 +1,20 @@
+class Solution {
+  public:
+    // Function to return a list containing the DFS traversal of the graph.
+    vector<int> dfsOfGraph(vector<vector<int>>& adj) {
+        vector<bool> visited(adj.size(),false);  
+        vector<int> result;
+        dfsImplement(visited,result,adj,0);
+        return result;
+    }
+    void  dfsImplement(vector<bool>& visited,vector<int>& result,vector<vector<int>>& adj,int node){
+        visited[node] = true;
+        result.push_back(node);
+        for(int n : adj[node]){
+            if(!visited[n]){
+                dfsImplement(visited,result,adj,n);
+            }
+        }
+        
+    }
+};
