@@ -1,0 +1,27 @@
+class Solution {
+  public:
+    // Function to return Breadth First Traversal of given graph.
+    vector<int> bfsOfGraph(vector<vector<int>> &adj) {
+        vector<int> visited(adj.size(),false);
+        vector<int> ans;
+        bfsImplement(adj,visited,ans,0);
+        return ans;
+    }
+    void bfsImplement(vector<vector<int>>& adj, vector<int> visited, vector<int>& ans, int node){
+        queue<int> q; 
+        q.push(0);
+        visited[0] = true;
+        
+        while(!q.empty()){
+            int curr = q.front();
+            q.pop();
+            ans.push_back(curr);
+            for(int neighbor : adj[curr]){
+                if(!visited[neighbor]){
+                    visited[neighbor] = true;
+                    q.push(neighbor);
+                }
+            }
+        }
+    }
+};
