@@ -1,0 +1,35 @@
+class Solution {
+  public:
+    // Function to detect cycle in an undirected graph.
+    bool bfsImplement(vector<vector<int>>& adj,vector<int>& visited,int src){
+        visited[src] = true;
+        queue<pair<int,int>> q;
+        q.push({src,-1});
+        while(!q.empty()){
+            int node = q.front().first;
+            int prnt = q.front().second;
+            q.pop();
+            for(int neighbor : adj[node]){
+                if(!visited[neighbor]){
+                    visited[neighbor] = true;
+                    q.push({neighbor,node});
+                }else if(prnt != neighbor){
+                    return true;
+                }
+            }
+        }
+        return false;
+        
+    }
+    bool isCycle(vector<vector<int>>& adj) {
+        vector<int> visited(adj.size(),false);
+        for (int i = 0; i < adj.size(); i++) {
+            if (!visited[i]) {
+                if (bfsImplement(adj, visited, i)) {
+                    return true; // Cycle detected
+                }
+            }
+        }
+        return false;
+    }
+};
