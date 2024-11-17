@@ -1,0 +1,28 @@
+bool dfsImplement(vector<vector<int>>& adj,vector<int>& visited,int src,int node){
+        visited[node] = true;
+        for(int neighbor : adj[node]){
+            if(!visited[neighbor]){
+                if(dfsImplement(adj, visited, node, neighbor) == true){
+                    return true;
+                }
+            }else if(neighbor != src) 
+                {
+                    return true;
+                }
+        }
+        return false;
+    }
+    
+    bool isCycle(vector<vector<int>>& adj) {
+        vector<int> visited(adj.size(),false);
+
+        for (int i = 0; i < adj.size(); i++) {
+            if (!visited[i]) {
+                if (dfsImplement(adj, visited, -1, i)) {
+                    return true; // Cycle detected
+                }
+            }
+        }
+        return false;
+    }
+};
