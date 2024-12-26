@@ -1,0 +1,25 @@
+Approach 1 - Recursive Solution 
+
+class Solution {
+  public:
+    // Function to return max value that can be put in knapsack of capacity.
+    int helper(int w,int n,vector<int> &val, vector<int> &wt){
+        if(n==0||w==0){
+            return 0;
+        }
+        if(wt[n-1]>w){
+            return helper(w,n-1,val,wt);
+        }
+        
+        int includeWeight = val[n-1] + helper(w-wt[n-1],n-1,val,wt);
+        int excludeWeight = helper(w,n-1,val,wt);
+        
+        return max(includeWeight,excludeWeight);
+        
+    }
+    
+    int knapSack(int capacity, vector<int> &val, vector<int> &wt) {
+        int n = wt.size();
+        return helper(capacity,n,val,wt);
+    }
+};
